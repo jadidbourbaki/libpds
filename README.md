@@ -1,5 +1,7 @@
 # libpds
 
+![test workflow](https://github.com/jadidbourbaki/libpds/actions/workflows/libpds.yml/badge.svg)
+
 Library for Probabilistic Data Structures
 
 Bloom Filter benchmarks:
