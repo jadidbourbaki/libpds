@@ -1,4 +1,4 @@
-name: libpds CI
+name: build
 
 on:
   push:
