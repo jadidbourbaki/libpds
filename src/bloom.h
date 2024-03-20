@@ -5,15 +5,15 @@
 #include <stdbool.h>
 
 struct pds_bloom {
-	unsigned char* bitmap;
-	size_t bits;
+ unsigned char* bitmap;
+ size_t bits;
 
-	/* array of hash function seeds */
-	int* seeds;
+ /* array of hash function seeds */
+ int* seeds;
 
-	/* number of hash functions to use */
-	/* this is also equal to the number of seeds used */
-	size_t hashes;
+ /* number of hash functions to use */
+ /* this is also equal to the number of seeds used */
+ size_t hashes;
 
 };
 
