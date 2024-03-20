@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=
+CFLAGS=-Wall -Werror
 DEPS=
 ODIR=obj
 BINDIR=bin
