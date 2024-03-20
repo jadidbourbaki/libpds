@@ -8,3 +8,10 @@ Bloom Filter benchmarks:
 
 - Inserts: 1.2 million requests per second
 - Queries : 1.3 million requests per second
+
+Roadmap
+
+- [x] bloom filter
+- [ ] count min sketch
+- [ ] cuckoo filter
+- [ ] hyperloglog
