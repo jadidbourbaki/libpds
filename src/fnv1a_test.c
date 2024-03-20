@@ -46,8 +46,25 @@ static void test_seed(void) {
 	printf("passed\n");
 }
 
+static void test_avalanche(void) {
+	printf("%s: ", __func__);
+
+	const uint8_t key1 = 0;
+	const uint8_t key2 = 1;
+
+	const size_t key_len = 1;
+	const int seed = 42;
+
+	uint64_t result1 = pds_fnv1a(((char*) &key1), key_len, seed);
+	uint64_t result2 = pds_fnv1a(((char*) &key2), key_len, seed);
+
+	assert(result1 != result2);
+	printf("passed\n");
+}
+
 int main() {
 	test_hash_correct();
 	test_empty();
 	test_seed();
+	test_avalanche();
 }
