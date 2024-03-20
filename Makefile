@@ -10,7 +10,12 @@ $(ODIR)/%.o: src/%.c $(DEPS)
 fnv1a_test: $(ODIR)/fnv1a_test.o $(ODIR)/fnv1a.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
-.PHONE: clean clean_odir clean_bindir
+.PHONY: test
+
+test: fnv1a_test
+	./bin/fnv1a_test
+
+.PHONY: clean clean_odir clean_bindir
 
 clean_odir:
 	rm -rf $(ODIR) && mkdir -p $(ODIR)
@@ -19,5 +24,3 @@ clean_bindir:
 	rm -rf $(BINDIR) && mkdir -p $(BINDIR)
 
 clean: clean_odir clean_bindir
-
-
