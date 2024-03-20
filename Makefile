@@ -10,7 +10,7 @@ $(ODIR)/%.o: src/%.c $(DEPS)
 fnv1a_test: $(ODIR)/fnv1a_test.o $(ODIR)/fnv1a.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
-bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o
+bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/fnv1a.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
 .PHONY: test
