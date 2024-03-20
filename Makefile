@@ -15,8 +15,9 @@ bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/fnv1a.o
 
 .PHONY: test
 
-test: fnv1a_test
+test: fnv1a_test bloom_test
 	./bin/fnv1a_test
+	./bin/bloom_test
 
 .PHONY: clean clean_odir clean_bindir
 
