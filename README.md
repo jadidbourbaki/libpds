@@ -1,4 +1,4 @@
-# libpds
+# libprobability
 
 ![test workflow](https://github.com/jadidbourbaki/libpds/actions/workflows/libpds.yml/badge.svg)
 
