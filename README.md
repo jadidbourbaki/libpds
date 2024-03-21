@@ -16,7 +16,7 @@ Bloom Filter benchmarks:
 ## Roadmap
 
 - [x] bloom filter
-- [ ] partitioned bloom filters
+- [x] partitioned bloom filters
 - [ ] counting bloom filters
 - [ ] count min sketch
 - [ ] cuckoo filter

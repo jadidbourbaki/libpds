@@ -6,7 +6,7 @@ BINDIR=bin
 NAME=$(libprobability)
 SRC=src
 
-lib: $(ODIR)/hash.o $(ODIR)/bloom.o
+lib: $(ODIR)/hash.o $(ODIR)/bloom.o $(ODIR)/pt_bloom.o
 	ar rcs $(BINDIR)/$(NAME).a $^
 
 $(ODIR)/%.o: $(SRC)/%.c $(DEPS)
