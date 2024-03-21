@@ -33,3 +33,4 @@ clean_bindir:
 	rm -rf $(BINDIR) && mkdir -p $(BINDIR)
 
 clean: clean_odir clean_bindir
+
