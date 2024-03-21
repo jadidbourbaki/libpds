@@ -8,11 +8,6 @@ Fast, well-tested, production-quality implementation of various probabilistic
 data structures. Useful for key-value stores, caches, and big data / streaming
 applications.
 
-Bloom Filter benchmarks:
-
-- Inserts: 1.2 million requests per second
-- Queries : 1.3 million requests per second
-
 ## Roadmap
 
 - [x] bloom filter
@@ -75,3 +70,15 @@ int main() {
  return 0;
 }
 ```
+
+## Benchmarks
+
+Bloom Filter benchmarks:
+
+- Inserts: 1.2 million requests per second
+- Queries : 1.3 million requests per second
+
+Partitioned Bloom Filter benchmarks:
+
+- Inserts: 1.18 million requests per second
+- Queries: 1.22 million requests per second
