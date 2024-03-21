@@ -18,11 +18,15 @@ hash_test: $(ODIR)/hash_test.o $(ODIR)/hash.o
 bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/hash.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
+pt_bloom_test: $(ODIR)/pt_bloom_test.o $(ODIR)/pt_bloom.o $(ODIR)/hash.o
+	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
+
 .PHONY: test
 
-test: hash_test bloom_test
+test: hash_test bloom_test pt_bloom_test
 	./bin/hash_test
 	./bin/bloom_test
+	./bin/pt_bloom_test
 
 .PHONY: clean clean_odir clean_bindir
 
