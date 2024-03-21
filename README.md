@@ -20,6 +20,7 @@ applications.
 # Compiling
 
 ```
+./configure
 make test
 make lib
 ```
