@@ -1,5 +1,5 @@
-#ifndef PDS_BLOOM_H
-#define PDS_BLOOM_H
+#ifndef LP_BLOOM_H
+#define LP_BLOOM_H
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -25,4 +25,4 @@ void lp_bloom_insert(struct lp_bloom* pb, const char* key, const size_t len_key)
 
 bool lp_bloom_check(struct lp_bloom* pb, const char* key, const size_t len_key);
 
-#endif /* PDS_BLOOM_H */ 
+#endif /* LP_BLOOM_H */ 

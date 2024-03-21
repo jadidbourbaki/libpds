@@ -3,8 +3,13 @@ CFLAGS=-Wall -Werror
 DEPS=
 ODIR=obj
 BINDIR=bin
+NAME=$(libprobability)
+SRC=src
 
-$(ODIR)/%.o: src/%.c $(DEPS)
+lib: $(ODIR)/hash.o $(ODIR)/bloom.o
+	ar rcs $(BINDIR)/$(NAME).a $^
+
+$(ODIR)/%.o: $(SRC)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 hash_test: $(ODIR)/hash_test.o $(ODIR)/hash.o
