@@ -23,7 +23,7 @@ Bloom Filter benchmarks:
 
 Simple Bloom Filter usage example:
 
-```
+```c
 #include "lp.h"
 
 #include <stdio.h>
