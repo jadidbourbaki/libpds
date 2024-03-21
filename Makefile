@@ -3,7 +3,7 @@ CFLAGS=-Wall -Werror
 DEPS=
 ODIR=obj
 BINDIR=bin
-NAME=$(libprobability)
+NAME=libprobability
 SRC=src
 
 lib: $(ODIR)/hash.o $(ODIR)/bloom.o $(ODIR)/pt_bloom.o
