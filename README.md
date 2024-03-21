@@ -22,6 +22,14 @@ Bloom Filter benchmarks:
 - [ ] cuckoo filter
 - [ ] hyperloglog
 
+# Compiling
+
+```
+make test
+make lib
+```
+
+Link `libprobability.a` in the `bin/` directory
 
 ## Usage
 
