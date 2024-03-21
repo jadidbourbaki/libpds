@@ -1,14 +1,14 @@
 #include "bloom.h"
 
-#include "fnv1a.h"
+#include "hash.h"
 #include <assert.h>
 #include <limits.h>
 
-struct pds_bloom* pds_bloom_create(const size_t bits, const size_t hashes) {
+struct lp_bloom* lp_bloom_create(const size_t bits, const size_t hashes) {
  assert(bits != 0);
  assert(hashes != 0);
 
- struct pds_bloom* pb = malloc(sizeof(struct pds_bloom));
+ struct lp_bloom* pb = malloc(sizeof(struct lp_bloom));
  if (pb == NULL) {
   return NULL;
  }
@@ -39,21 +39,21 @@ struct pds_bloom* pds_bloom_create(const size_t bits, const size_t hashes) {
  return pb;
 }
 
-void pds_bloom_free(struct pds_bloom** ppb) {
+void lp_bloom_free(struct lp_bloom** ppb) {
  assert(ppb != NULL);
 
- struct pds_bloom* pb = *ppb;
+ struct lp_bloom* pb = *ppb;
  free(pb->bitmap);
  free(pb->seeds);
  free(pb);
  *ppb = NULL;
 }
 
-void pds_bloom_insert(struct pds_bloom* pb, const char* key, const size_t len_key) {
+void lp_bloom_insert(struct lp_bloom* pb, const char* key, const size_t len_key) {
  register size_t i;
 
  for (i = 0; i < pb->hashes; i++) {
-  uint64_t hash = pds_fnv1a(key, len_key, pb->seeds[i]);
+  uint64_t hash = lp_hash(key, len_key, pb->seeds[i]);
   hash %= pb->bits;
 
   size_t index = hash / CHAR_BIT;
@@ -63,11 +63,11 @@ void pds_bloom_insert(struct pds_bloom* pb, const char* key, const size_t len_ke
  }
 }
 
-bool pds_bloom_check(struct pds_bloom* pb, const char* key, const size_t len_key) {
+bool lp_bloom_check(struct lp_bloom* pb, const char* key, const size_t len_key) {
  register size_t i;
 
  for (i = 0; i < pb->hashes; i++) {
-  uint64_t hash = pds_fnv1a(key, len_key, pb->seeds[i]);
+  uint64_t hash = lp_hash(key, len_key, pb->seeds[i]);
   hash %= pb->bits;
 
   size_t index = hash / CHAR_BIT;

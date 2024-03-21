@@ -1,6 +1,6 @@
-#include "fnv1a.h"
+#include "hash.h"
 
-uint64_t pds_fnv1a(const char* key, const size_t len_key, const int seed) {
+uint64_t lp_hash(const char* key, const size_t len_key, const int seed) {
  size_t i = len_key;
 
  uint64_t h = 14695981039346656037ULL + (31 * seed);

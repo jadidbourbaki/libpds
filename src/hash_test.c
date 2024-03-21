@@ -1,4 +1,4 @@
-#include "fnv1a.h"
+#include "hash.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -10,7 +10,7 @@ static void test_hash_correct(void) {
  const size_t key_len = 3;
  const int seed = 0;
 
- uint64_t result = pds_fnv1a(key, key_len, seed);
+ uint64_t result = lp_hash(key, key_len, seed);
  uint64_t expected_result = 0xf5e307190ce4a327;
 
  assert(result == expected_result);
@@ -24,7 +24,7 @@ static void test_empty(void) {
  const size_t key_len = 0;
  const int seed = 0;
 
- uint64_t result = pds_fnv1a(key, key_len, seed);
+ uint64_t result = lp_hash(key, key_len, seed);
  uint64_t expected_result = 14695981039346656037ULL;
 
  assert(result == expected_result);
@@ -39,8 +39,8 @@ static void test_seed(void) {
  const int seed1 = 0;
  const int seed2 = 1;
 
- uint64_t result1 = pds_fnv1a(key, key_len, seed1);
- uint64_t result2 = pds_fnv1a(key, key_len, seed2);
+ uint64_t result1 = lp_hash(key, key_len, seed1);
+ uint64_t result2 = lp_hash(key, key_len, seed2);
 
  assert(result1 != result2);
  printf("passed\n");
@@ -55,8 +55,8 @@ static void test_avalanche(void) {
  const size_t key_len = 1;
  const int seed = 42;
 
- uint64_t result1 = pds_fnv1a(((char*) &key1), key_len, seed);
- uint64_t result2 = pds_fnv1a(((char*) &key2), key_len, seed);
+ uint64_t result1 = lp_hash(((char*) &key1), key_len, seed);
+ uint64_t result2 = lp_hash(((char*) &key2), key_len, seed);
 
  assert(result1 != result2);
  printf("passed\n");

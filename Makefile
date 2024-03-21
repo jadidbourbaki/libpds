@@ -7,16 +7,16 @@ BINDIR=bin
 $(ODIR)/%.o: src/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-fnv1a_test: $(ODIR)/fnv1a_test.o $(ODIR)/fnv1a.o
+hash_test: $(ODIR)/hash_test.o $(ODIR)/hash.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
-bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/fnv1a.o
+bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/hash.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
 .PHONY: test
 
-test: fnv1a_test bloom_test
-	./bin/fnv1a_test
+test: hash_test bloom_test
+	./bin/hash_test
 	./bin/bloom_test
 
 .PHONY: clean clean_odir clean_bindir

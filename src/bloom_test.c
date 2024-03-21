@@ -8,14 +8,14 @@
 static void test_allocation_trivial(void) {
  printf("%s: ", __func__);
 
- struct pds_bloom* pb = pds_bloom_create(1, 1);
+ struct lp_bloom* pb = lp_bloom_create(1, 1);
  assert(pb != NULL);
  assert(pb->bitmap[0] == 0);
  assert(pb->seeds[0] == 0);
  assert(pb->hashes == 1);
  assert(pb->bits == 1);
 
- pds_bloom_free(&pb);
+ lp_bloom_free(&pb);
 
  printf("passed\n");
 }
@@ -31,17 +31,17 @@ static void test_correctness_trivial(void) {
 
  const size_t len_key = 3;
 
- struct pds_bloom* pb = pds_bloom_create(bits, hashes);
+ struct lp_bloom* pb = lp_bloom_create(bits, hashes);
 
- pds_bloom_insert(pb, key, len_key);
+ lp_bloom_insert(pb, key, len_key);
 
- bool check = pds_bloom_check(pb, key, len_key);
+ bool check = lp_bloom_check(pb, key, len_key);
  assert(check);
 
- check = pds_bloom_check(pb, not_key, len_key);
+ check = lp_bloom_check(pb, not_key, len_key);
  assert(!check);
 
- pds_bloom_free(&pb);
+ lp_bloom_free(&pb);
 
  printf("passed\n");
 }
@@ -57,19 +57,19 @@ static void benchmark_insert(void) {
  const char* key = "http://www.google.com";
  const size_t len_key = strlen(key);
  
- struct pds_bloom* pb = pds_bloom_create(bits, hashes);
+ struct lp_bloom* pb = lp_bloom_create(bits, hashes);
 
  register size_t i;
 
  clock_t begin = clock();
 
  for (i = 0; i < 1000; i++) {
-  pds_bloom_insert(pb, key, len_key);
+  lp_bloom_insert(pb, key, len_key);
  }
 
  clock_t end = clock();
 
- pds_bloom_free(&pb);
+ lp_bloom_free(&pb);
 
  double duration = (double)(end - begin) / CLOCKS_PER_SEC;
 
@@ -89,20 +89,20 @@ static void benchmark_check(void) {
  const char* key = "http://www.google.com";
  const size_t len_key = strlen(key);
  
- struct pds_bloom* pb = pds_bloom_create(bits, hashes);
- pds_bloom_insert(pb, key, len_key);
+ struct lp_bloom* pb = lp_bloom_create(bits, hashes);
+ lp_bloom_insert(pb, key, len_key);
 
  register size_t i;
 
  clock_t begin = clock();
 
  for (i = 0; i < 1000; i++) {
-  (void) pds_bloom_check(pb, key, len_key);
+  (void) lp_bloom_check(pb, key, len_key);
  }
 
  clock_t end = clock();
 
- pds_bloom_free(&pb);
+ lp_bloom_free(&pb);
 
  double duration = (double)(end - begin) / CLOCKS_PER_SEC;
 
