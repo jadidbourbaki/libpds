@@ -4,9 +4,11 @@
 
 Library for Probabilistic Data Structures
 
-Fast, well-tested, production-quality implementation of various probabilistic
-data structures. Useful for key-value stores, caches, and big data / streaming
-applications.
+## Introduction
+
+Fast, well-tested, production-quality implementation of the bloom filter
+other probabilistic data structures. The focus is to keep each data
+structure's API simple but performant.
 
 ## Roadmap
 
