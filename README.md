@@ -4,6 +4,10 @@
 
 Library for Probabilistic Data Structures
 
+Fast, well-tested, production-quality implementation of various probabilistic
+data structures. Useful for key-value stores, caches, and big data / streaming
+applications.
+
 Bloom Filter benchmarks:
 
 - Inserts: 1.2 million requests per second
