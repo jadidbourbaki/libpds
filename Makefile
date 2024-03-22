@@ -21,12 +21,16 @@ bloom_test: $(ODIR)/bloom_test.o $(ODIR)/bloom.o $(ODIR)/hash.o
 pt_bloom_test: $(ODIR)/pt_bloom_test.o $(ODIR)/pt_bloom.o $(ODIR)/hash.o
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
 
+cms_test: $(ODIR)/cms_test.o $(ODIR)/cms.o $(ODIR)/hash.o
+	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGS)
+
 .PHONY: test
 
-test: hash_test bloom_test pt_bloom_test
+test: hash_test bloom_test pt_bloom_test cms_test
 	./bin/hash_test
 	./bin/bloom_test
 	./bin/pt_bloom_test
+	./bin/cms_test
 
 .PHONY: clean clean_odir clean_bindir
 
