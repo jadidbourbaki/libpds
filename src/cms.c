@@ -2,6 +2,7 @@
 
 #include "hash.h"
 #include <assert.h>
+#include <limits.h>
 
 struct lp_cms* lp_cms_create(const size_t bits, const size_t hashes) {
  assert(bits != 0);
@@ -71,4 +72,33 @@ void lp_cms_free(struct lp_cms** pps) {
  free(ps);
 
  *pps = NULL;
+}
+
+void lp_cms_insert(struct lp_cms* ps, const char* key, const size_t len_key) {
+ register size_t i;
+
+ for (i = 0; i < ps->hashes; i++) {
+  uint64_t hash = lp_hash(key, len_key, ps->seeds[i]);
+  hash %= ps->bits;
+
+  ps->counters[i][hash] += 1;
+ }
+}
+
+int lp_cms_count(struct lp_cms* ps, const char* key, const size_t len_key) {
+ register size_t i;
+
+ int min = INT_MAX;
+
+ for (i = 0; i < ps->hashes; i++) {
+  uint64_t hash = lp_hash(key, len_key, ps->seeds[i]);
+  hash %= ps->bits;
+
+  int value = ps->counters[i][hash];
+  if (value < min) {
+   min = value;
+  }
+ }
+
+ return min;
 }
