@@ -6,7 +6,7 @@ Library for Probabilistic Data Structures
 
 ## Introduction
 
-Fast, well-tested, production-quality implementation of the bloom filter
+Fast, well-tested, production-quality implementation of the bloom filter and 
 other probabilistic data structures. The focus is to keep each data
 structure's API simple but performant.
 
