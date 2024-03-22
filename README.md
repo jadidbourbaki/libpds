@@ -14,7 +14,6 @@ structure's API simple but performant.
 
 - [x] bloom filter
 - [x] partitioned bloom filters
-- [ ] counting bloom filters
 - [x] count min sketch
 - [ ] hyperloglog
 
