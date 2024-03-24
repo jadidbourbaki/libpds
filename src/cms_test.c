@@ -76,9 +76,73 @@ static void test_correctness_many_inserts(void) {
  printf("passed\n");
 }
 
+static void benchmark_insert(void) {
+ printf("%s: ", __func__);
+
+ /* reasonably sized bloom filter */
+ const size_t bits = 4096;
+ const size_t hashes = 4;
+
+ /* reasonably sized key */
+ const char* key = "http://www.google.com";
+ const size_t len_key = strlen(key);
+ 
+ struct lp_cms* ps = lp_cms_create(bits, hashes);
+
+ register size_t i;
+
+ clock_t begin = clock();
+
+ for (i = 0; i < 1000; i++) {
+  lp_cms_insert(ps, key, len_key);
+ }
+
+ clock_t end = clock();
+
+ lp_cms_free(&ps);
+
+ double duration = (double)(end - begin) / CLOCKS_PER_SEC;
+
+ printf("benchmark %f seconds\n", duration);
+
+}
+
+static void benchmark_count(void) {
+ printf("%s: ", __func__);
+
+ /* reasonably sized bloom filter */
+ const size_t bits = 4096;
+ const size_t hashes = 4;
+
+ /* reasonably sized key */
+ const char* key = "http://www.google.com";
+ const size_t len_key = strlen(key);
+ 
+ struct lp_cms* ps = lp_cms_create(bits, hashes);
+ lp_cms_insert(ps, key, len_key);
+
+ register size_t i;
+
+ clock_t begin = clock();
+
+ for (i = 0; i < 1000; i++) {
+  (void) lp_cms_count(ps, key, len_key);
+ }
+
+ clock_t end = clock();
+
+ lp_cms_free(&ps);
+
+ double duration = (double)(end - begin) / CLOCKS_PER_SEC;
+
+ printf("benchmark %f seconds\n", duration);
+
+}
 
 int main() {
  test_allocation_trivial();
  test_correctness_trivial();
  test_correctness_many_inserts();
+ benchmark_insert();
+ benchmark_count();
 }
