@@ -83,3 +83,8 @@ Partitioned Bloom Filter benchmarks:
 
 - Inserts: 1.18 million requests per second
 - Queries: 1.22 million requests per second
+
+Count Min Sketch benchmarks:
+
+- Inserts: 1.29 million requests per second
+- Counts: 1.24 million requests per second
