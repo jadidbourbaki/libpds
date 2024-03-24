@@ -17,7 +17,17 @@ structure's API simple but performant.
 - [x] count min sketch
 - [ ] hyperloglog
 
-# Compiling
+# Compiling with Meson (recommended)
+
+```
+meson setup build 
+cd build
+meson compile
+```
+
+Link `libprobability.a` in the `build/src` directory
+
+# Compiling with Makefile
 
 ```
 ./configure
